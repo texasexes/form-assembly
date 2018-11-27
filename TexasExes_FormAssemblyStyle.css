@@ -1,0 +1,139 @@
+<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+<style type="text/css">
+
+  /*  Set the background color for the page */
+  .wFormWebPage{
+    background-color: #f8f9f7 !important;
+  }
+
+  /* Set the background color for just the form */
+  .wForm {
+    background-color: #fff;
+  }
+
+  /* Set the color and character for the required field marker */
+  .wForm .reqMark::after{
+    content: " *";
+    color: #cb6015 !important;
+    font-size: 100%;
+  }
+
+  /* Set the correct font for field labels */
+  .wForm .preField {
+    font-family: 'Rubik', sans-serif;
+  }
+
+  /* Set the color and border options for a container object */
+  .wFormContainer {
+    background-color: #fff;
+    padding: 2em !important;
+    border-color: #ecece7;
+    border-style: solid;
+    border-width: 1px;
+  }
+
+  /* Set the font family and styling for the form's title */
+  .wFormContainer .wFormTitle {
+    font-family: 'Sentinel', 'Georgia', serif;
+    font-weight: bold !important;
+    text-align: center;
+    color: #555 !important;
+  }
+
+  /* Set the padding, height, and justification for the header image */
+  .wFormContainer .wFormHeader {
+    background-position: center center !important;
+    padding-top: 20px !important;
+    height: 3em;
+  }
+
+  /* Set the alignment and font for text sections on a form
+     This requires specific styling because text sections get their own html blocks */
+  .htmlContent {
+    vertical-align: center;
+    font-family: 'Rubik', sans-serif !important;
+  }
+
+  /* Font and other options for form elements within a form container
+     This affects things like labels, input boxes, and element spacing */
+  .wFormContainer .wForm {
+    padding: 1em 0em !important;
+    font-family: 'Rubik',sans-serif !important;
+    font-size: 16px !important;
+    color: #777 !important;
+    border-color: #ecede8 !important;
+    border-top-width: thin !important;
+    border-left-width: thin !important;
+    border-bottom-width: thin !important;
+    border-right-width: thin !important;
+    line-height: 1.8em !important;
+  }
+
+  /* Set the border around a field set form element */
+  .wFormContainer fieldset {
+    border: 1px solid #ecede8;
+  }
+
+  /* Set the font information for a field set element's title */
+  .wFormContainer fieldset legend {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Sentinel', 'Georgia', serif;
+    color: #555;
+    padding: 10px 8px 10px 8px;
+  }
+
+  /* Sets the font size when the custom teHeadlineDescription class is invoked
+     This will be invoked within a text section element as you can provide inline styling and custom classes */
+  .teHeadlineDescription {
+    font-size: 24px;
+  }
+
+  /* Sets font size and padding options when custom teSectionDescription class is invoked
+     This will be invoked within a text section element as you can provide inline styling and custom classes */
+  .teSectionDescription {
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 1.8em !important;
+  }
+
+  /* Sets font options for user input */
+  .wForm .inputWrapper input[type=text],
+  .wForm .inputWrapper input[type=time],
+  .wForm .inputWrapper input[type=number],
+  .wForm .inputWrapper input[type=url],
+  .wForm .inputWrapper input[type=email],
+  .wForm .inputWrapper input[type=checkbox],
+  .wForm .inputWrapper input[type=password],
+  .wForm .inputWrapper textarea,
+  .wForm .inputWrapper select {
+    max-width: 100%;
+    border-radius: 2px;
+    border-style: solid;
+    border-color: #ccc !important;
+    border-width: 1px;
+    font-family: 'Rubik',sans-serif !important;
+    color: #555;
+  }
+
+  /* Sets the font options for the words within add a file element */
+  .wform .inputWrapper input[type=file] {
+    font-family: 'Rubik',sans-serif !important;
+    font-size: 16px !important;
+  }
+
+  /* Sets the style the submit button */
+  input.primaryAction {
+    -webkit-appearance: none;
+    background-color: #cb6015 !important;
+    font-family: 'Rubik',sans-serif !important;
+  }
+
+  /* Sets the style for the contact information link footer text */
+  a.contactInfoLink{
+    color: #cb6015 !important;
+    font-size: 17px;
+  }
+
+</style>
