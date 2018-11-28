@@ -70,8 +70,9 @@
     line-height: 1.8em !important;
   }
 
-  /* Set the border around a field set form element */
+  /* Set the border around a field set form element and set the font family */
   .wFormContainer fieldset {
+    font-family: 'Rubik', sans-serif;
     border: 1px solid #ecede8;
   }
 
