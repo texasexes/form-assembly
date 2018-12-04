@@ -35,8 +35,9 @@
 
   /* Set the font family and styling for the form's title */
   .wFormContainer .wFormTitle {
-    font-family: 'Sentinel', 'Georgia', serif;
-    font-weight: bold !important;
+    font-family: 'Sentinel A', 'Georgia', serif;
+    font-weight: 700 !important;
+    font-style: normal !important;
     text-align: center;
     color: #555 !important;
   }
@@ -79,8 +80,9 @@
   /* Set the font information for a field set element's title */
   .wFormContainer fieldset legend {
     font-size: 20px;
-    font-weight: bold;
-    font-family: 'Sentinel', 'Georgia', serif;
+    font-weight: 700 !important;
+    font-family: 'Sentinel A', 'Georgia', serif;
+    font-style: normal !important;
     color: #555;
     padding: 10px 8px 10px 8px;
   }
