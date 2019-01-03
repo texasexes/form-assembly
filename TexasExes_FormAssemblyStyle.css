@@ -25,6 +25,11 @@
     font-family: 'Rubik', sans-serif;
   }
 
+  /* Fix the spacing between captcha help text */
+  body .wForm .captchaHelp {
+    margin-top: 0em;
+  }
+
   /* Set the color and border options for a container object */
   body .wFormContainer {
     background-color: #fff;
