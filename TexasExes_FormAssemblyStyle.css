@@ -5,6 +5,9 @@
   /*  Set the background color for the page */
   .wFormWebPage{
     background-color: #f8f9f7 !important;
+    /*  added by Jeff */
+    background-color: none;
+    margin: 0;
   }
 
   /* Set the background color for just the form */
@@ -31,6 +34,47 @@
     border-color: #ecece7;
     border-style: solid;
     border-width: 1px;
+    margin: 0;
+    /*  added by Jeff */
+    background-color: #f8f9f7;
+    border: none;
+    margin: 0;
+    max-width: none;
+    padding: 0 15px;
+  }
+
+  /*  added by Jeff */
+  .wFormContainer > div {
+    background-color: #fff;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+
+  /*  added by Jeff */
+  .wFormContainer::before {
+    background-color: #fff;
+    content: "";
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    height: 124px;
+  }
+  /*  added by Jeff */
+  @media (min-width: 768px) {
+    .wFormContainer::after {
+      background-color: #f2f3ed;
+      content: "";
+      display: block;
+      left: 0;
+      right: 0;
+      position: absolute;
+      top: 124px;
+      height: 55px;
+    }
   }
 
   /* Set the font family and styling for the form's title */
@@ -47,6 +91,14 @@
     background-position: center center !important;
     padding-top: 20px !important;
     height: 3em;
+    /* added by Jeff */
+    height: 124px;
+    background-size: 288px;
+    background-position: left center;
+    background-origin: content-box;
+    padding: 0 0 0 40px;
+    position: relative;
+    margin-bottom: 0;
   }
 
   /* Set the alignment and font for text sections on a form
@@ -69,7 +121,23 @@
     border-bottom-width: thin !important;
     border-right-width: thin !important;
     line-height: 1.8em !important;
+/*  added by Jeff */
+    max-width: 700px;
+    margin: 55px 40px 0;
+    border: none;
+    border-radius: 0;
+    padding: 16px 0;
   }
+
+  /* added by Jeff */
+  /* .wFormContainer .wForm::after {
+    background-color: #f2f3ed;
+    content: "";
+    display: block;
+    left: 0;
+    right: 0;
+    position: absolute;
+  } */
 
   /* Set the border around a field set form element and set the font family */
   .wFormContainer fieldset {
@@ -131,6 +199,41 @@
     -webkit-appearance: none;
     background-color: #cb6015 !important;
     font-family: 'Rubik',sans-serif !important;
+    /* added by Jeff */
+    /* add because something happens upon submit that makes the color revert to #777*/
+    color: #fff;
+  }
+
+  /* added by Jeff */
+  /*  hiding unneeded? additional support info */
+  .wFormFooter + .supportInfo {
+    display: none;
+  }
+
+  /* added by Jeff */
+  .wFormFooter .supportInfo {
+    box-sizing: border-box;
+    border: 0;
+    height: 260px;
+    margin: 0;
+    padding-left: 40px
+  }
+
+  /*  added by Jeff */
+  #tfaContent {
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  #tfaContent::after {
+    background-color: #282a32;
+    content: "";
+    display: block;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    height: 260px;
   }
 
   /* Sets the style for the contact information link footer text */
