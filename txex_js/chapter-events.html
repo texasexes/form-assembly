@@ -11,16 +11,50 @@
   </style>
 
   <script type="text/javascript">
-  function setupAttendeeExpension(hiddenSelectorClass, attenderCounterClass) {
-      var trackingHidden = document.querySelector("input." + hiddenSelectorClass);
-      var attendeeFields = trackingHidden.parentElement;
-      var sectionWrapper = attendeeFields.parentElement;
-      var attendeeCheck = sectionWrapper.querySelector('input[type=checkbox]');
+    function setupAttendeeExpension(hiddenSelectorClass, ticketRepeatingSectionClasses, ticketTypeCounterClass, ticketIdClass) {
+
+      // Find the DOM structures for the Attendee Information.
+      var attendeeTrackingHidden = document.querySelector("input." + hiddenSelectorClass);
+      var attendeeFields = attendeeTrackingHidden.parentElement;
+      var attendeeSectionWrapper = attendeeFields.parentElement;
+      var attendeeCheck = attendeeSectionWrapper.querySelector('input[type=checkbox]');
+
 
       attendeeCheck.addEventListener('click', function (event) {
+
+          // Attenedee Add Link.
+          var link = attendeeSectionWrapper.querySelector('div.duplicateSpan a');
+
+          // Find the DOM structures for the ticket types information.
+          var ticketTypeSections = [];
+          var ticketTypeSection;
+          for(var i = 0; i < ticketRepeatingSectionClasses.length; i++) {
+              ticketTypeSection = document.querySelectorAll('input.' + ticketRepeatingSectionClasses[i])
+              ticketTypeSections = ticketTypeSections.concat(Array.prototype.slice.call(ticketTypeSection));
+          }
+
+          var attendCount = 0;
+          var runningTotal = 0;
+          var newAttendeeSection;
+          var ticketDetailSection;
+          var ticketId = '';
+          for(var i = 0; i < ticketTypeSections.length; i++) {
+              ticketDetailSection = ticketTypeSections[i].parentElement;
+              attendCount = parseInt(ticketDetailSection.querySelector('input.' + ticketTypeCounterClass).value);
+              for (var j = 0; j < attendCount; j++) {
+                  runningTotal++;
+                  if (runningTotal != 1) {
+                    link.click();
+                  }
+                  newAttendeeSection = attendeeSectionWrapper.querySelectorAll('fieldset');
+                  newAttendeeSection = newAttendeeSection[newAttendeeSection.length-1];
+                  ticketId = ticketDetailSection.querySelector('input.calc-TicketTypeSFID').value;
+                  newAttendeeSection.querySelector('input.' +  ticketIdClass).value = ticketId;
+              }
+          }
+
           var attendeeCount = parseInt(document.querySelector('input.' + attenderCounterClass).value);
-          var currentList = sectionWrapper.querySelectorAll('fieldset').length;
-          var link = sectionWrapper.querySelector('div.duplicateSpan a');
+          var currentList = attendeeSectionWrapper.querySelectorAll('fieldset').length;
 
           if (attendeeCount >= currentList) {
               attendeeCount = attendeeCount - currentList;
@@ -74,7 +108,8 @@
       donationField.innerHTML = donationField.innerHTML + donationName.value;
       customQ6Value.value = '';
 
-      setupAttendeeExpension('calc-IsAttendeeInfo', 'calc-AttendeeTotalCount');
+      setupAttendeeExpension('calc-IsAttendeeInfo', ['calc-IsTicketInfo', 'calc-IsWaitInfo'], 'calc-TicketAttendeeCount', 'calc-TicketIdVar');
+
   }
 
   </script>
