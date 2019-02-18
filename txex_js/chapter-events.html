@@ -1,0 +1,80 @@
+<style>
+    .removeLink,.duplicateLink {
+      display: none;
+    }
+    #tfa_17,#tfa_17\[0\],#tfa_17\[1\],#tfa_17\[2\],#tfa_17\[3\],#tfa_17\[4\],#tfa_17\[5\],#tfa_4727,#tfa_4727\[0\],#tfa_4727\[1\],#tfa_4727\[2\],#tfa_4727\[3\],#tfa_4727\[4\],#tfa_4727\[5\],#tfa_24,#tfa_24\[0\],#tfa_24\[1\],#tfa_24\[2\],#tfa_24\[3\],#tfa_24\[4\],#tfa_24\[5\],#tfa_23,#tfa_23\[0\],#tfa_23\[1\],#tfa_23\[2\],#tfa_23\[3\],#tfa_23\[4\],#tfa_23\[5\] {
+      resize: none;
+    }
+    #tfa_15,#tfa_15\[0\],#tfa_15\[1\],#tfa_15\[2\],#tfa_15\[3\],#tfa_15\[4\],#tfa_15\[5\],#tfa_4724,#tfa_4724\[0\],#tfa_4724\[1\],#tfa_4724\[2\],#tfa_4724\[3\],#tfa_4724\[4\],#tfa_4724\[5\] {
+      max-width: 205px;
+    }
+  </style>
+
+  <script type="text/javascript">
+  function setupAttendeeExpension(hiddenSelectorClass, attenderCounterClass) {
+      var trackingHidden = document.querySelector("input." + hiddenSelectorClass);
+      var attendeeFields = trackingHidden.parentElement;
+      var sectionWrapper = attendeeFields.parentElement;
+      var attendeeCheck = sectionWrapper.querySelector('input[type=checkbox]');
+
+      attendeeCheck.addEventListener('click', function (event) {
+          var attendeeCount = parseInt(document.querySelector('input.' + attenderCounterClass).value);
+          var currentList = sectionWrapper.querySelectorAll('fieldset').length;
+          var link = sectionWrapper.querySelector('div.duplicateSpan a');
+
+          if (attendeeCount >= currentList) {
+              attendeeCount = attendeeCount - currentList;
+          }
+
+          for (var i = 0; i < attendeeCount; i++) {
+              link.click();
+          }
+      });
+  }
+
+  window.onload = function () {
+      var bannerimg = document.getElementById('tfa_4748-HTML');
+      bannerimg.innerHTML = '<img src="' + document.getElementById("tfa_4749").value + '"style="width:100%;">';
+
+      var titleSpot = document.getElementById("tfa_33");
+      titleSpot.innerHTML = '<a style="font-size:24px;">' + document.getElementById("tfa_7").value + '</a>';
+
+      var customQ1 = document.getElementById("tfa_4754-L");
+      var customQ1Value = document.getElementById("tfa_4754");
+      customQ1.innerHTML = customQ1Value.value;
+      customQ1Value.value = '';
+
+      var customQ2 = document.getElementById("tfa_4756-L");
+      var customQ2Value = document.getElementById("tfa_4756");
+      customQ2.innerHTML = customQ2Value.value;
+      customQ2Value.value = '';
+
+      var customQ3 = document.getElementById("tfa_4758-L");
+      var customQ3Value = document.getElementById("tfa_4758");
+      customQ3.innerHTML = customQ3Value.value;
+      customQ3Value.value = '';
+
+      var customQ4 = document.getElementById("tfa_4760-L");
+      var customQ4Value = document.getElementById("tfa_4760");
+      customQ4.innerHTML = customQ4Value.value;
+      customQ4Value.value = '';
+
+      var customQ5 = document.getElementById("tfa_4762-L");
+      var customQ5Value = document.getElementById("tfa_4762");
+      customQ5.innerHTML = customQ5Value.value;
+      customQ5Value.value = '';
+
+      var customQ6 = document.getElementById("tfa_4764-L");
+      var customQ6Value = document.getElementById("tfa_4764");
+      customQ6.innerHTML = customQ6Value.value;
+      customQ6Value.value = '';
+
+      var donationField = document.getElementById("tfa_4818-L");
+      var donationName = document.getElementById("tfa_4823");
+      donationField.innerHTML = donationField.innerHTML + donationName.value;
+      customQ6Value.value = '';
+
+      setupAttendeeExpension('calc-IsAttendeeInfo', 'calc-AttendeeTotalCount');
+  }
+
+  </script>
