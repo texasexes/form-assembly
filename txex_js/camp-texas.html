@@ -1,0 +1,49 @@
+<style>
+  .removeLink,.duplicateLink {
+    display: none;
+  }
+  #tfa_17,#tfa_17\[0\],#tfa_17\[1\],#tfa_17\[2\],#tfa_17\[3\],#tfa_17\[4\],#tfa_17\[5\],#tfa_4727,#tfa_4727\[0\],#tfa_4727\[1\],#tfa_4727\[2\],#tfa_4727\[3\],#tfa_4727\[4\],#tfa_4727\[5\],#tfa_24,#tfa_24\[0\],#tfa_24\[1\],#tfa_24\[2\],#tfa_24\[3\],#tfa_24\[4\],#tfa_24\[5\],#tfa_23,#tfa_23\[0\],#tfa_23\[1\],#tfa_23\[2\],#tfa_23\[3\],#tfa_23\[4\],#tfa_23\[5\] {
+    resize: none;
+  }
+  #tfa_15,#tfa_15\[0\],#tfa_15\[1\],#tfa_15\[2\],#tfa_15\[3\],#tfa_15\[4\],#tfa_15\[5\],#tfa_4724,#tfa_4724\[0\],#tfa_4724\[1\],#tfa_4724\[2\],#tfa_4724\[3\],#tfa_4724\[4\],#tfa_4724\[5\],#tfa_22,#tfa_22\[0\],#tfa_22\[1\],#tfa_22\[2\],#tfa_22\[3\],#tfa_22\[4\],#tfa_22\[5\] {
+    max-width: 205px;
+  }
+</style>
+
+<script type="text/javascript">
+
+  window.onload = function(){
+    var bannerimg=document.getElementById('tfa_4748-HTML');
+    bannerimg.innerHTML = '<img src="' + document.getElementById("tfa_4749").value + '"style="width:100%;">';
+
+    var titleSpot=document.getElementById("tfa_33");
+    titleSpot.innerHTML = '<a style="font-size:24px;">' + document.getElementById("tfa_7").value + '</a>';
+
+    var checkId = document.getElementById("tfa_4740");
+    if(checkId){
+    	radiobtnsingle = document.getElementById("tfa_4740");
+    	radiobtnsingle.checked = true;
+    	offerIdsingle = document.getElementById("tfa_4753");
+    	document.getElementById('tfa_4759').value = offerIdsingle.value;
+  	}
+
+    radiobtnmult = document.getElementById("tfa_4740\[0\]");
+	radiobtnmult.checked = true;
+    offerIdMult = document.getElementById("tfa_4753\[0\]");
+    document.getElementById('tfa_4759').value = offerIdMult.value;
+
+    // Make all fieldsets clickable so that the radio button within them is clicked when the contain hears the event.
+    var fieldsets = document.querySelectorAll('fieldset');
+    for (var i = 0; i < fieldsets.length; i++) {
+        if (fieldsets[i].querySelector('input[type=radio]')) {
+            fieldsets[i].addEventListener('click', function (event) {
+                var boxes = this.querySelectorAll('input[type=radio]');
+                if (boxes.length > 1) {
+                    return;
+                }
+                this.querySelector('input[type=radio]').click();
+            });
+        }
+    }
+  }
+</script>
