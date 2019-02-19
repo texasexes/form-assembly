@@ -11,58 +11,86 @@
   </style>
 
   <script type="text/javascript">
-    function setupAttendeeExpension(hiddenSelectorClass, ticketRepeatingSectionClasses, ticketTypeCounterClass, ticketIdClass) {
+    function setupAttendeeExpension() {
+      // To limit the number of inline-magic keys the various FormAssembly generated classes are stashed here.
+      // The variables are used to allow reasonable names, and not force everything off IDs, but there are
+      // still a fairly large number -- some nested -- that need to be handled.
+      var selectorClasses = {
+        // The hidden filed in the Attendee information section used as a marker find DOM searching.
+        hiddenSelectorClass: 'calc-IsAttendeeInfo',
+        // These are for the two repeating sections of ticket types, first standard and wait lists.
+        ticketSectionClasses: {
+          // Ticket types can be either a standard ticket or a waitlist ticket
+          'Standard': 'calc-TicketAttendeeTotal',
+          'Waitlist': 'calc-AttendeeWaitTotal',
+        },
+        // The variables for the Ticket type SFID are all the same class.
+        ticketTypeIdSource: 'calc-TicketTypeSFID',
+        // The same is true of labels
+        ticketTypeLabel: 'calc-TicketTypeLabelVar',
+        // The attendee information all has a variable to hold the value of the SFID as well.
+        ticketIdClass: 'calc-TicketIdVar',
+        // The ticket type status in the attendee section.
+        ticketStatus: 'calc-TicketStatusVar',
+        // The ticket name in the attendee section
+        ticketName: 'calc-TicketNameVar',
+
+      };
 
       // Find the DOM structures for the Attendee Information.
-      var attendeeTrackingHidden = document.querySelector("input." + hiddenSelectorClass);
+      var attendeeTrackingHidden = document.querySelector("input." + selectorClasses.hiddenSelectorClass);
       var attendeeFields = attendeeTrackingHidden.parentElement;
       var attendeeSectionWrapper = attendeeFields.parentElement;
       var attendeeCheck = attendeeSectionWrapper.querySelector('input[type=checkbox]');
 
+      // Click handler for the actual handling of the checkbox interaction to provide attendee information.
+      attendeeCheck.addEventListener('change', (event) => {
+        if (event.target.checked) {
+            // Attenedee Add Link.
+            var link = attendeeSectionWrapper.querySelector('div.duplicateSpan a');
 
-      attendeeCheck.addEventListener('click', function (event) {
-
-          // Attenedee Add Link.
-          var link = attendeeSectionWrapper.querySelector('div.duplicateSpan a');
-
-          // Find the DOM structures for the ticket types information.
-          var ticketTypeSections = [];
-          var ticketTypeSection;
-          for(var i = 0; i < ticketRepeatingSectionClasses.length; i++) {
-              ticketTypeSection = document.querySelectorAll('input.' + ticketRepeatingSectionClasses[i])
-              ticketTypeSections = ticketTypeSections.concat(Array.prototype.slice.call(ticketTypeSection));
-          }
-
-          var attendCount = 0;
-          var runningTotal = 0;
-          var newAttendeeSection;
-          var ticketDetailSection;
-          var ticketId = '';
-          for(var i = 0; i < ticketTypeSections.length; i++) {
-              ticketDetailSection = ticketTypeSections[i].parentElement;
-              attendCount = parseInt(ticketDetailSection.querySelector('input.' + ticketTypeCounterClass).value);
-              for (var j = 0; j < attendCount; j++) {
-                  runningTotal++;
-                  if (runningTotal != 1) {
-                    link.click();
+            // Find the DOM structures for the ticket types information.
+            var ticketTypeSection;
+            var ticketSections = Object.keys(selectorClasses.ticketSectionClasses);
+            var attendCount = 0;
+            var runningTotal = 0;
+            var newAttendeeSection;
+            var ticketDetailSection;
+            var ticketData = '';
+            for (var i = 0; i < ticketSections.length; i++) {
+                ticketTypeSection = document.querySelectorAll('input.' + selectorClasses.ticketSectionClasses[ticketSections[i]])
+                for (var j = 0; j < ticketTypeSection.length; j++) {
+                  ticketDetailSection = ticketTypeSection[j].parentElement;
+                  attendCount = parseInt(ticketTypeSection[j].value);
+                  for (var h = 0; h < attendCount; h++) {
+                      runningTotal++;
+                      if (runningTotal != 1) {
+                        link.click();
+                      }
+                      newAttendeeSection = attendeeSectionWrapper.querySelectorAll('fieldset');
+                      newAttendeeSection = newAttendeeSection[newAttendeeSection.length-1];
+                      // Copy the ticket ID into the attendee info
+                      ticketData = ticketDetailSection.querySelector('input.' + selectorClasses.ticketTypeIdSource).value;
+                      newAttendeeSection.querySelector('input.' +  selectorClasses.ticketIdClass).value = ticketData;
+                      // Copy the ticket label into the attendee info
+                      ticketData = ticketDetailSection.querySelector('input.' + selectorClasses.ticketTypeLabel).value;
+                      newAttendeeSection.querySelector('input.' +  selectorClasses.ticketName).value = ticketData;
+                      // Copy the ticket status into the attendee info
+                      newAttendeeSection.querySelector('input.' +  selectorClasses.ticketStatus).value = ticketSections[i];
                   }
-                  newAttendeeSection = attendeeSectionWrapper.querySelectorAll('fieldset');
-                  newAttendeeSection = newAttendeeSection[newAttendeeSection.length-1];
-                  ticketId = ticketDetailSection.querySelector('input.calc-TicketTypeSFID').value;
-                  newAttendeeSection.querySelector('input.' +  ticketIdClass).value = ticketId;
               }
+            }
+        } else {
+          // Remove all Attendee sections when we unset the box.
+          var allAttendeeInfo = document.querySelectorAll("input." + selectorClasses.hiddenSelectorClass);
+          var removeLink
+          for (var i = 0; i < allAttendeeInfo.length; i++) {
+            removeLink = allAttendeeInfo[i].parentElement.querySelector('a.removeLink');
+            if (removeLink) {
+              removeLink.click();
+            }
           }
-
-          var attendeeCount = parseInt(document.querySelector('input.' + attenderCounterClass).value);
-          var currentList = attendeeSectionWrapper.querySelectorAll('fieldset').length;
-
-          if (attendeeCount >= currentList) {
-              attendeeCount = attendeeCount - currentList;
-          }
-
-          for (var i = 0; i < attendeeCount; i++) {
-              link.click();
-          }
+        }
       });
   }
 
@@ -108,7 +136,7 @@
       donationField.innerHTML = donationField.innerHTML + donationName.value;
       customQ6Value.value = '';
 
-      setupAttendeeExpension('calc-IsAttendeeInfo', ['calc-IsTicketInfo', 'calc-IsWaitInfo'], 'calc-TicketAttendeeCount', 'calc-TicketIdVar');
+      setupAttendeeExpension();
 
   }
 
