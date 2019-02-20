@@ -58,7 +58,7 @@
             var ticketDetailSection;
             var ticketData = '';
             for (var i = 0; i < ticketSections.length; i++) {
-                ticketTypeSection = document.querySelectorAll('input.' + selectorClasses.ticketSectionClasses[ticketSections[i]])
+                ticketTypeSection = document.querySelectorAll('.' + selectorClasses.ticketSectionClasses[ticketSections[i]])
                 for (var j = 0; j < ticketTypeSection.length; j++) {
                   ticketDetailSection = ticketTypeSection[j].parentElement;
                   attendCount = parseInt(ticketTypeSection[j].value);
@@ -70,19 +70,19 @@
                       newAttendeeSection = attendeeSectionWrapper.querySelectorAll('fieldset');
                       newAttendeeSection = newAttendeeSection[newAttendeeSection.length-1];
                       // Copy the ticket ID into the attendee info
-                      ticketData = ticketDetailSection.querySelector('input.' + selectorClasses.ticketTypeIdSource).value;
-                      newAttendeeSection.querySelector('input.' +  selectorClasses.ticketIdClass).value = ticketData;
+                      ticketData = ticketDetailSection.querySelector('.' + selectorClasses.ticketTypeIdSource).value;
+                      newAttendeeSection.querySelector('.' +  selectorClasses.ticketIdClass).value = ticketData;
                       // Copy the ticket label into the attendee info
-                      ticketData = ticketDetailSection.querySelector('input.' + selectorClasses.ticketTypeLabel).value;
-                      newAttendeeSection.querySelector('input.' +  selectorClasses.ticketName).value = ticketData;
+                      ticketData = ticketDetailSection.querySelector('.' + selectorClasses.ticketTypeLabel).value;
+                      newAttendeeSection.querySelector('.' +  selectorClasses.ticketName).value = ticketData;
                       // Copy the ticket status into the attendee info
-                      newAttendeeSection.querySelector('input.' +  selectorClasses.ticketStatus).value = ticketSections[i];
+                      newAttendeeSection.querySelector('.' +  selectorClasses.ticketStatus).value = ticketSections[i];
                   }
               }
             }
         } else {
           // Remove all Attendee sections when we unset the box.
-          var allAttendeeInfo = document.querySelectorAll("input." + selectorClasses.hiddenSelectorClass);
+          var allAttendeeInfo = document.querySelectorAll("." + selectorClasses.hiddenSelectorClass);
           var removeLink
           for (var i = 0; i < allAttendeeInfo.length; i++) {
             removeLink = allAttendeeInfo[i].parentElement.querySelector('a.removeLink');
